@@ -25,4 +25,8 @@ export class Vector2D {
     clone() {
         return new Vector2D(this._row, this._col);
     }
+
+    add(vector) {
+        return new Vector2D(this._row + vector.getRow, this._col + vector.getCol);
+    }
 }

@@ -47,6 +47,21 @@ export class Coins {
         this._animation = new Animation(body, coinAnimationPattern);
 
         this._coins = [];
+        this._observers = [];
+    }
+
+    addObserver(observer) {
+        this._observers.push(observer);
+    }
+
+    removeObserver(observer) {
+        this._observers = this._observers.filter(obs => obs !== observer);
+    }
+
+    onCoinCollected() {
+        this._observers.forEach(observer => {
+          observer.coinCollected();
+        });
     }
 
     generateOnMap(world) {
@@ -74,14 +89,16 @@ export class Coins {
         for (let i = 0; i <  this._coins.length; i++) {
             const coin = this._coins[i];
 
-            if(!coin) {
+            if(!coin || coin.collected) {
                 continue;
             }
 
             const hasCollision = 
                 object.getPosition.equalsTo(coin.object.getPosition);
+
             if(hasCollision) {
                 coin.collected = true;
+                this.onCoinCollected();
             }
         }
     }

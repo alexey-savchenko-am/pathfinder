@@ -1,9 +1,9 @@
 import { makeMoveCommand, makeSelectTileCommand } from "./commands.js";
 
-export const LEFT = "LEFT"
-export const RIGHT = "RIGHT"
-export const UP = "UP"
-export const DOWN = "DOWN"
+export const LEFT = "LEFT";
+export const RIGHT = "RIGHT";
+export const UP = "UP";
+export const DOWN = "DOWN";
 
 
 export class InputHandler {
@@ -16,11 +16,44 @@ export class InputHandler {
         coordinates: { x: 0, y: 0 }
       };
 
+      this._keyState = {
+        LEFT: false,
+        RIGHT: false,
+        UP: false,
+        DOWN: false
+      }
+
       this._canvas = canvas;
       this.handleMouseDown = this.handleMouseDown.bind(this); 
       this.handleMouseUp = this.handleMouseUp.bind(this); 
+      this.updateKeysState = this.updateKeysState.bind(this); 
       this._canvas.addEventListener('mousedown', this.handleMouseDown);
       this._canvas.addEventListener('mouseup', this.handleMouseUp);
+      document.addEventListener('keydown', this.updateKeysState);
+      document.addEventListener('keyup', this.updateKeysState);
+    }
+
+    updateKeysState(event) {
+
+      console.log(event.code);
+      switch (event.code) {
+        case 'KeyA':
+        case 'ArrowLeft':
+          this._keyState[LEFT] = event.type === 'keydown';
+          break;
+        case 'KeyW':
+        case 'ArrowUp':
+          this._keyState[UP] = event.type === 'keydown';
+          break;
+        case 'KeyD':
+        case 'ArrowRight':
+          this._keyState[RIGHT] = event.type === 'keydown';
+          break;
+        case 'KeyS':
+        case 'ArrowDown':
+          this._keyState[DOWN] = event.type === 'keydown';
+          break;
+      }
     }
 
     handleMouseDown(event) {
@@ -47,7 +80,7 @@ export class InputHandler {
     }
 
     isPressed(key) {
-      this.keysPressed[key] === true;
+      return this._keyState[key];
     }
 
     updateMouseCoordinates(event) {

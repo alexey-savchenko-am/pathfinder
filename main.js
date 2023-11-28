@@ -29,24 +29,20 @@ document.addEventListener('contextmenu', function (event) {
     event.preventDefault();
   });
 
-//800X600  (8X6)
+
 const worldInputHandler = new WorldInputHandler(board);
 const inputHandler = new ObjectInputHandler(board);
 const world = new World(worldInputHandler, 12, 10);
 
 const hero = new GirlHero(new Vector2D(1,2));
-//const coin = new Coin(new Vector2D(5,5));
 world.appendChild(hero);
-//world.appendChild(coin);
 
 world.generateTerrain();
 
 const update = (delta) => {
-    //console.log(delta);
     world.handleInputEvents();
     world.update(delta);
     hero.frame(delta);
-    //coin.frame(delta);
 };
 
 const render = () => {

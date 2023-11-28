@@ -31,13 +31,24 @@ export function makeMoveObjectCommand(actor, x, y) {
 };
 
 
+export function makeMoveToVectorCommand(actor, vector) {
+  return {
+    execute: function() {
+      actor.moveSelectedChildToVector(vector);
+    },
+    undo: function() {
+    }
+  }
+}
+
+
 export function makeSelectHeroCommand(actor, x, y) {
   return {
     execute: function() {
       actor.selectHero(x, y);
     },
     undo: function() {
-      actor.selectHero(x, y);
+      actor.deselect(x, y);
     }
   }
 };

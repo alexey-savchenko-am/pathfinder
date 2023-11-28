@@ -32,7 +32,11 @@ export class World extends GameObject {
         }));
 
         this._coins = new Coins();
+        this._coins.addObserver(this);
+        this._score = 0;
     }
+
+    coinCollected = () => this._score++;
 
     appendChild(child) {
         super.appendChild(child);
@@ -54,17 +58,21 @@ export class World extends GameObject {
                 
                 let terrain = this.sandTerrain;
 
-                if (noiseValue <= 0.5) {
+                if (noiseValue <= 0.4) {
                     terrain = this.waterTerrain;
                 } 
 
                 const cell = y * this.width + x;
 
-                this._tiles[cell] = { isSelected: false, terrain };
+                this._tiles[cell] = { isSelected: false, terrain, position: new Vector2D(y, x) };
             }
         }
 
         this._coins.generateOnMap(this);
+    }
+
+    findTileByPosition(position) {
+        return this._tiles.find(tile => tile.position.equalsTo(position));
     }
 
     selectHero(x, y) {
@@ -80,13 +88,29 @@ export class World extends GameObject {
         }
     }
 
+    moveSelectedChildToVector(vector) {
+
+        if(!this._selectedChild || this._selectedChild._isMoving) {
+            return;
+        }
+
+        const newPosition = this._selectedChild.getPosition.add(vector);
+
+        const tile = this.findTileByPosition(newPosition);
+
+        if(!tile || !tile.terrain.getIsPassable()) {
+            return;
+        }
+
+        this._selectedChild.moveToTile(newPosition);
+    }
+
     moveSelectedChildTo(x, y) {
 
         if(!this._selectedChild || this._selectedChild._isMoving) {
             return;
         }
 
-        console.log(this._selectedChild.getPosition);
         const moveVectors = astar(
             this._selectedChild.getPosition, 
             this.getTileByCoordinates(x, y), 
@@ -123,6 +147,17 @@ export class World extends GameObject {
         }
     }
 
+    displayScore(ctx) {
+        ctx.font = "30px Arial";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+      
+        var text = `Score: ${this._score}`;
+
+        ctx.fillText(text, (this._widthInTiles - 1) * this._tileSize, this._tileSize / 2);
+    }
+
     draw(ctx) {
 
         const tileSize = this.settings.getTileSize; 
@@ -142,6 +177,8 @@ export class World extends GameObject {
                 ctx.fillRect(x, y, tileSize, tileSize);
             }
         }
+
+        this.displayScore(ctx);
 
         this._coins.draw(ctx);
 
