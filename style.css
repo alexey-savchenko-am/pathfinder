@@ -1,0 +1,19 @@
+body {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#board {
+    border: 3px solid black;
+    cursor: pointer;
+}
+
+.coords {
+    position: fixed;
+    right: 50px;
+    top:50px;
+    font-size: 2rem;
+}
