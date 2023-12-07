@@ -1,5 +1,5 @@
 import { InputHandler } from "./InputHandler.js";
-import { makeMoveCommand } from "./commands.js";
+import { makeThrowObjectCommand } from "./commands.js";
 
 export class ObjectInputHandler extends InputHandler {
     constructor(canvas) {
@@ -8,8 +8,8 @@ export class ObjectInputHandler extends InputHandler {
 
     handle(actor) {
 
-        if(this._mouseState.isLeftPressed) {
-           // return makeMoveCommand(actor, this._mouseState.coordinates.x, this._mouseState.coordinates.y);
+        if(this.isPressed("KeyE")) {
+           return makeThrowObjectCommand(actor);
         }
   
         return null;

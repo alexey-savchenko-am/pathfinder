@@ -15,12 +15,44 @@ export class GameObject {
         this._centerY = ((this._tileSize - this.height) / 2) + this._y;
         this._children = [];
         this._inputHandler = inputHandler;
-        this.onEndpointReach = null;
         this._selected = false;
+        this._isMarkAsDeleted = false;
     }
 
+    get childrenCount() {
+        return this._children.length;
+    }
+    
     get getPosition() {
         return this._position;
+    }
+
+    get position() {
+        return this._position;
+    }
+
+    get left() { 
+        return this._x; 
+    }
+
+    get top() {
+        return this._y;
+    }
+
+    get right() {
+        return this._x + this.width;
+    }
+
+    get bottom() {
+        return this._y + this.height;
+    }
+
+    setPosition(position) {
+        this._position = position.clone();
+        this._x = position.getCol * this._tileSize;
+        this._y = position.getRow * this._tileSize;
+        this._centerX = ((this._tileSize - this.width) / 2) + this._x;
+        this._centerY = ((this._tileSize - this.height) / 2) + this._y;
     }
 
     select() {
@@ -31,23 +63,12 @@ export class GameObject {
         this._selected = false;
     }
 
-
-    subscribeOnEndpointReach(onEndpointReach) {
-        this.onEndpointReach = onEndpointReach;
-    }
-
     appendChild(child) {
         this._children.push(child);
     }
 
     removeChild(child) {
         this._children = this._children.filter(ch => child !== ch);
-    }
-
-    getTileByCoordinates(x, y) {
-        const row = Math.floor(y / this._tileSize);
-        const col = Math.floor(x / this._tileSize);
-        return new Vector2D(row, col);
     }
 
     getDelta(x1, y1, x2, y2) {

@@ -76,15 +76,15 @@ export function astar(currentPosition, destinationPosition, tileMap, tilesInRowC
 
         for(let direction of directions) {
             
-            const dRow = node._row + direction[0];
-            const dCol = node._col + direction[1];
+            const dRow = Math.floor(node._row + direction[0]);
+            const dCol = Math.floor(node._col + direction[1]);
 
             const cell = dRow * tilesInRowCount + dCol;
    
             if(dRow >= 0 && dCol >= 0 && dRow < tilesInColCount && dCol < tilesInRowCount) {
 
-                if(tileMap[cell].terrain.getIsPassable()) {
-                    //console.log(dRow, dCol);
+                const isPassable = tileMap.getTile(new Vector2D(dRow, dCol)).terrain.getIsPassable();
+                if(isPassable) {
                     neighbors.push(new Node(dRow, dCol));
                 }
             }

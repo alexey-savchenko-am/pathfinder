@@ -64,3 +64,15 @@ export function makeSelectTileCommand(actor, x, y) {
     }
   }
 };
+
+
+
+export function makeThrowObjectCommand(actor) {
+  return {
+    execute: function() {
+      actor.throwObject();
+    },
+    undo: function() {
+    }
+  }
+};

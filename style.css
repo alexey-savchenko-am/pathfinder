@@ -4,11 +4,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: black;
 }
 
 #board {
-    border: 3px solid black;
     cursor: pointer;
+    background-color: black;
 }
 
 .coords {

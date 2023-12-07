@@ -34,8 +34,6 @@ export class InputHandler {
     }
 
     updateKeysState(event) {
-
-      console.log(event.code);
       switch (event.code) {
         case 'KeyA':
         case 'ArrowLeft':
@@ -52,6 +50,9 @@ export class InputHandler {
         case 'KeyS':
         case 'ArrowDown':
           this._keyState[DOWN] = event.type === 'keydown';
+          break;
+        default: 
+          this._keyState[event.code] = event.type === 'keydown';
           break;
       }
     }

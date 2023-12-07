@@ -59,10 +59,14 @@ export class Sprite {
     }
 
 
-    draw(ctx, x, y, width, height, frameNumber) {
+    draw(ctx, x, y, width, height, frameNumber = null) {
         
       if (!this._resource.isLoaded) {
         return;
+      }
+
+      if(!frameNumber) {
+        frameNumber = 0;
       }
 
       const frame = this._frameMap.get(frameNumber);

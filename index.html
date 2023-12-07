@@ -6,8 +6,12 @@
     </head>
     <body>
         <span class="coords">(200;321)</span>
-        <canvas id="board" width="900" height="750"></canvas>
-
+        <canvas id="board" width="1200" height="750"></canvas>
+        
+        <script type="module" src="src/levels/level1.js"></script>
+        <script type="module" src="SoundPlayer.js"></script>
+        <script type="module" src="Camera.js"></script>
+        <script type="module" src="Events.js"></script>
         <script type="module" src="Resources.js"></script>
         <script type="module" src="MainLoop.js"></script>
         <script type="module" src="Settings.js"></script>
@@ -16,16 +20,23 @@
         <script type="module" src="src/Sprite.js"></script>
         <script type="module" src="src/helpers/perlinNoise.js"></script>
         <script type="module" src="src/helpers/astar.js"></script>
+        <script type="module" src="src/helpers/generateMaze.js"></script>
+        <script type="module" src="src/helpers/calculateLighting.js"></script>
         <script type="module" src="src/animation/Animation.js"></script>
         <script type="module" src="src/animation/animationPatterns.js"></script>
+        <script type="module" src="src/animation/objectAnimationPatterns.js"></script>
         <script type="module" src="src/input/commands.js"></script>
         <script type="module" src="src/input/InputHandler.js"></script>
         <script type="module" src="src/input/ObjectInputHandler.js"></script>
         <script type="module" src="src/input/WorldInputHandler.js"></script>
         <script type="module" src="src/GameObject.js"></script>
-        <script type="module" src="src/Hero.js"></script>
-        <script type="module" src="src/Heroes.js"></script>
-        <script type="module" src="src/Coins.js"></script>
+        <script type="module" src="src/objects/Coin.js"></script>
+        <script type="module" src="src/objects/Light.js"></script>
+        <script type="module" src="src/objects/Tile.js"></script>
+        <script type="module" src="src/objects/TileSet.js"></script>
+        <script type="module" src="src/objects/Hero.js"></script>
+        <script type="module" src="src/objects/GirlHero.js"></script>
+        <script type="module" src="src/objects/Sphere.js"></script>
         <script type="module" src="main.js"></script>
     </body>
 </html>

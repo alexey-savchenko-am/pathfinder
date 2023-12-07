@@ -1,16 +1,21 @@
 import { World } from "./src/World.js";
 import { MainLoop } from "./MainLoop.js";
-import { Hero } from "./src/Hero.js";
 import { ObjectInputHandler } from "./src/input/ObjectInputHandler.js";
 import { WorldInputHandler } from "./src/input/WorldInputHandler.js";
 import { Vector2D } from "./src/Vector2D.js";
 import { Sprite, CroppableSprite } from "./src/Sprite.js";
 import { resources } from "./Resources.js";
-import { GirlHero } from "./src/Heroes.js";
+import { GirlHero } from "./src/objects/GirlHero.js";
+import { Camera } from "./Camera.js";
 
 
 
 const board = document.getElementById("board");
+
+/*
+board.width = window.innerWidth;
+board.height = window.innerHeight;*/
+
 const context = board.getContext("2d");
 const coords = document.getElementsByClassName("coords")[0];
 context.imageSmoothingEnabled = false;
@@ -32,12 +37,15 @@ document.addEventListener('contextmenu', function (event) {
 
 const worldInputHandler = new WorldInputHandler(board);
 const inputHandler = new ObjectInputHandler(board);
-const world = new World(worldInputHandler, 12, 10);
 
-const hero = new GirlHero(new Vector2D(1,2));
+const camera  = new Camera();
+const world = new World(camera, worldInputHandler, 32, 20);
+world.generateMaze();
+
+const hero = new GirlHero(new Vector2D(1,2), inputHandler);
 world.appendChild(hero);
 
-world.generateTerrain();
+
 
 const update = (delta) => {
     world.handleInputEvents();
@@ -46,7 +54,6 @@ const update = (delta) => {
 };
 
 const render = () => {
-    context.clearRect(0, 0, board.width, board.height);
     world.draw(context);
 };
 
