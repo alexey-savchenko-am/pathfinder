@@ -35,48 +35,26 @@ export class Hero extends GameObject {
         this._animation = new Animation(sprite, stayDownPattern);
         this._prevPosition = position.clone();
         this._currentDirection = Direction.DOWN;
+        this._inventory = [];
 
         events.on("HERO_POSITION", this, () => {
             //soundPlayer.playSound(resources.sounds.move);
         });
     }
 
+    pickUpItem(item) {
+        this._currentDirection = Direction.UP;
+        this._inventory.push(item);
+        soundPlayer.playSound(resources.sounds.pickup);
+    }
+
+    get inventory() {
+        return this._inventory;
+    }
+
     moveToTile(vector) {
         this.moveTo(vector.getCol * this._tileSize, vector.getRow * this._tileSize);
     } 
-
-    getBoundedBlocks() {
-        return [
-            new Vector2D(Math.ceil(this._position.getRow), Math.ceil(this._position.getCol)),
-            this._position.left(),
-            this._position.right(),
-            this._position.top(),
-            this._position.bottom(),
-            this._position.topLeft(),
-            this._position.topRight(),
-            this._position.bottomLeft(),
-            this._position.bottomRight(),
-
-            this._position.left().left(),
-            this._position.left().left().top(),
-            this._position.left().left().bottom(),
-            this._position.right().right(),
-            this._position.right().right().top(),
-            this._position.right().right().bottom(),
-            this._position.top().top(),
-            this._position.top().top().left(),
-            this._position.top().top().right(),
-            this._position.bottom().bottom(),
-            this._position.bottom().bottom().left(),
-            this._position.bottom().bottom().right(),
-
-            this._position.topLeft().topLeft(),
-            this._position.topRight().topRight(),
-            this._position.bottomLeft().bottomLeft(),
-            this._position.bottomRight().bottomRight(),
-
-        ];
-    }
 
     cancelMoving() {
         this._isMoving = false;

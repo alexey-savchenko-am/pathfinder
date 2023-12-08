@@ -4,10 +4,10 @@ import {
     makeMoveObjectCommand, 
     makeMoveToVectorCommand, 
     makeSelectHeroCommand,
-  
+    makePikupOrThrowItemCommand
  } from "./commands.js";
 
- import {   LEFT, RIGHT, UP, DOWN } from "./InputHandler.js";
+ import { LEFT, RIGHT, UP, DOWN } from "./InputHandler.js";
 
 export class WorldInputHandler extends InputHandler {
     constructor(canvas) {
@@ -18,7 +18,6 @@ export class WorldInputHandler extends InputHandler {
           
         if(this._mouseState.isRightPressed) {
             this._mouseState.isRightPressed = false;
-            //return makeSelectTileCommand(actor, this._mouseState.coordinates.x, this._mouseState.coordinates.y);
             return makeMoveObjectCommand(actor, this._mouseState.coordinates.x, this._mouseState.coordinates.y);
         }
 
@@ -42,6 +41,12 @@ export class WorldInputHandler extends InputHandler {
         if(this.isPressed(RIGHT)) {
             return makeMoveToVectorCommand(actor, new Vector2D(0, 1));
         }
+
+        if(this.isPressed("KeyE")) {
+            this._keyState["KeyE"] = false;
+            return makePikupOrThrowItemCommand(actor);
+         }
+   
   
         return null;
     }

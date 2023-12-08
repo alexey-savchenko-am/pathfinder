@@ -3,6 +3,7 @@ import { Sprite, CroppableSprite } from "../Sprite.js";
 import { resources } from "../../Resources.js";
 import { Vector2D } from "../Vector2D.js";
 import { Sphere } from "./Sphere.js";
+import { soundPlayer } from "../../SoundPlayer.js";
 
 export class GirlHero extends Hero {
     constructor(position, inputHandler) {
@@ -20,8 +21,6 @@ export class GirlHero extends Hero {
 
     
     throwObject() {
-        console.log("thrown" + this._currentDirection);
-
         let throwVector = null;
         const speed = 0.1;
         switch(this._currentDirection) {
@@ -40,6 +39,7 @@ export class GirlHero extends Hero {
         }
 
         this._sphere.throwTowards(throwVector);
+        this.inventory.shift();
     }
 
 
@@ -55,6 +55,8 @@ export class GirlHero extends Hero {
     draw(ctx) {
         super.draw(ctx);
 
-        this._sphere.draw(ctx, this._currentDirection);
+        if(this.inventory.length > 0 || this._sphere.isThrown) {
+            this._sphere.draw(ctx, this._currentDirection);
+        }
     }
 };

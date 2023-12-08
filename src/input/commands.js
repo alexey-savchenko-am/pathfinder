@@ -67,10 +67,10 @@ export function makeSelectTileCommand(actor, x, y) {
 
 
 
-export function makeThrowObjectCommand(actor) {
+export function makePikupOrThrowItemCommand(actor) {
   return {
     execute: function() {
-      actor.throwObject();
+      actor.pickupOrThrowItem();
     },
     undo: function() {
     }

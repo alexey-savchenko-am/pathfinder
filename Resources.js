@@ -20,6 +20,7 @@ class Resources {
         coin: "/assets/sound/coin.wav",
         move: "/assets/sound/move.wav",
         break: "/assets/sound/break.mp3",
+        pickup: "/assets/sound/pickup.mp3"
       };
   
       this.images = {};

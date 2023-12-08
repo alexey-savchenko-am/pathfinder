@@ -87,7 +87,7 @@ export class TileSet {
         tile.setTerrain({darkTerrain: this.darkSandTerrain, lightTerrain: this.lightSandTerrain});
     }
 
-    getTile = position => this._tileMap.get(position); 
+    getTile = position => this._tileMap.get(position.round()); 
 
     getTileByCoordinates(x, y, offset) {
         let row = Math.floor(y / this._tileSize);
@@ -198,9 +198,6 @@ export class TileSet {
             if(tile._children.some(item => item instanceof Light)) {
                 this.highLightTilesAround(tile.position, 1);
             }
-        });
-
-        this._tileMap.forEach(tile => {
             tile.draw(ctx);
             tile.displayMode = DisplayMode.DarkMode;
         });

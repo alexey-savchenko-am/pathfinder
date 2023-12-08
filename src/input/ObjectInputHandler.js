@@ -8,10 +8,6 @@ export class ObjectInputHandler extends InputHandler {
 
     handle(actor) {
 
-        if(this.isPressed("KeyE")) {
-           return makeThrowObjectCommand(actor);
-        }
-  
         return null;
     }
 }

@@ -47,6 +47,16 @@ export class GameObject {
         return this._y + this.height;
     }
 
+    getAndRemoveChild() {
+        if(this._children.length === 0) {
+            return null;
+        }
+
+        const child = this._children[0];
+        this._children.shift();
+        return child;
+    }
+
     setPosition(position) {
         this._position = position.clone();
         this._x = position.getCol * this._tileSize;

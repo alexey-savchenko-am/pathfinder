@@ -56,13 +56,39 @@ export class World extends GameObject {
 
         for(let child of this._children) {
             child.deselect();
-
             if(child.position.equalsTo(tile.position)) {
                 this._selectedChild = child;
                 child.select();
             }
 
         }
+    }
+
+    pickupOrThrowItem() {
+
+        const child = this._selectedChild;
+
+        if(!child) {
+            return;
+        }
+        
+        if(child.inventory.length !== 0) {
+            child.throwObject();
+            return;
+        }
+
+        const tile = this._tiles.getTile(child.position);
+
+        if(tile.childrenCount === 0) {
+            return;
+        }
+
+        const item = tile.getAndRemoveChild();
+
+        if(item) {
+            child.pickUpItem(item);
+        }
+
     }
 
     moveSelectedChildToVector(vector) {
