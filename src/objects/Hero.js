@@ -4,16 +4,6 @@ import { soundPlayer } from "../../SoundPlayer.js";
 import { GameObject } from "../GameObject.js";
 import { Vector2D } from "../Vector2D.js";
 import { Animation } from "../animation/Animation.js";
-import { 
-    stayUpPattern,
-    stayDownPattern,
-    stayLeftPattern,
-    stayRightPattern,
-    walkDownPattern, 
-    walkUpPattern, 
-    walkLeftPattern, 
-    walkRightPattern 
-} from "../animation/animationPatterns.js";
 import { ObjectInputHandler } from "../input/ObjectInputHandler.js";
 
 
@@ -27,12 +17,13 @@ export const Direction = {
 
 export class Hero extends GameObject {
 
-    constructor(sprite, position, width, height, inputHandler) {
+    constructor(sprite, patterns, position, width, height, inputHandler) {
         super(position, width, height, inputHandler);
         this._destinationQueue = [];
         this._isMoving = false;
         this._sprite = sprite;
-        this._animation = new Animation(sprite, stayDownPattern);
+        this._patterns = patterns;
+        this._animation = new Animation(sprite, patterns.stayDownPattern);
         this._prevPosition = position.clone();
         this._currentDirection = Direction.DOWN;
         this._inventory = [];
@@ -103,16 +94,16 @@ export class Hero extends GameObject {
             switch(this._currentDirection)
             {
                 case Direction.DOWN:
-                    this._animation.setAnimationPattern(stayDownPattern);
+                    this._animation.setAnimationPattern(this._patterns.stayDownPattern);
                     break;
                 case Direction.UP:
-                    this._animation.setAnimationPattern(stayUpPattern);
+                    this._animation.setAnimationPattern(this._patterns.stayUpPattern);
                     break;
                 case Direction.LEFT:
-                    this._animation.setAnimationPattern(stayLeftPattern);
+                    this._animation.setAnimationPattern(this._patterns.stayLeftPattern);
                      break;
                 case Direction.RIGHT:
-                    this._animation.setAnimationPattern(stayRightPattern);
+                    this._animation.setAnimationPattern(this._patterns.stayRightPattern);
                     break;
             }
 
@@ -126,16 +117,16 @@ export class Hero extends GameObject {
         switch(destination.direction)
         {
             case Direction.DOWN:
-                this._animation.setAnimationPattern(walkDownPattern);
+                this._animation.setAnimationPattern(this._patterns.walkDownPattern);
                 break;
             case Direction.UP:
-                this._animation.setAnimationPattern(walkUpPattern);
+                this._animation.setAnimationPattern(this._patterns.walkUpPattern);
                 break;
             case Direction.LEFT:
-                this._animation.setAnimationPattern(walkLeftPattern);
+                this._animation.setAnimationPattern(this._patterns.walkLeftPattern);
                  break;
             case Direction.RIGHT:
-                this._animation.setAnimationPattern(walkRightPattern);
+                this._animation.setAnimationPattern(this._patterns.walkRightPattern);
                 break;
         }
        
@@ -172,10 +163,20 @@ export class Hero extends GameObject {
 
     draw(ctx) {
 
-        if(this._selected) {
-            ctx.strokeRect(this._x, this._y, this.width, this.height);
-        }
+        
 
         this._animation.draw(ctx, this._centerX, this._centerY, this.width, this.height);
+
+        if(this._selected) {
+            // ctx.strokeRect(this._x, this._y, this.width, this.height);
+            ctx.beginPath();
+            ctx.arc(this._x + this.width/2, this._y - 5, 5, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'yellow'; 
+            ctx.fill();
+            ctx.lineWidth = 2; 
+            ctx.strokeStyle = 'black'; 
+            ctx.stroke();
+            ctx.closePath();
+         }
     }
 }

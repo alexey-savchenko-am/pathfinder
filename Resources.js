@@ -3,6 +3,7 @@ import hero from "./assets/img/hero.png";
 import coin from "./assets/img/coin.svg";
 import candle from "./assets/img/candle.png";
 import light from "./assets/img/light.png";
+import gnome from "./assets/img/gnome.png"
 
 class Resources {
     constructor() {
@@ -12,7 +13,8 @@ class Resources {
         hero,
         coin,
         candle,
-        light
+        light,
+        gnome
       };
 
             

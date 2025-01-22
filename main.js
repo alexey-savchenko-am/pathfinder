@@ -7,7 +7,8 @@ import { Sprite, CroppableSprite } from "./src/Sprite.js";
 import { resources } from "./Resources.js";
 import { GirlHero } from "./src/objects/GirlHero.js";
 import { Camera } from "./Camera.js";
-
+import { GnomeHero } from "./src/objects/GnomeHero.js";
+import "./style.css";
 
 
 const board = document.getElementById("board");
@@ -42,15 +43,17 @@ const camera  = new Camera();
 const world = new World(camera, worldInputHandler, 32, 20);
 world.generateMaze();
 
-const hero = new GirlHero(new Vector2D(1,2), inputHandler);
+const hero = new GnomeHero(new Vector2D(1,2), inputHandler);
+const enemy = new GirlHero(new Vector2D(1,5), inputHandler);
 world.appendChild(hero);
-
+world.appendChild(enemy);
 
 
 const update = (delta) => {
     world.handleInputEvents();
     world.update(delta);
     hero.frame(delta);
+    enemy.frame(delta);
 };
 
 const render = () => {

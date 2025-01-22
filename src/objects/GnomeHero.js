@@ -4,34 +4,34 @@ import { resources } from "../../Resources.js";
 import { Vector2D } from "../Vector2D.js";
 import { Sphere } from "./Sphere.js";
 import { soundPlayer } from "../../SoundPlayer.js";
-import { 
-    stayUpPattern,
+import {
     stayDownPattern,
+    stayUpPattern,
     stayLeftPattern,
     stayRightPattern,
-    walkDownPattern, 
-    walkUpPattern, 
-    walkLeftPattern, 
-    walkRightPattern 
-} from "../animation/animationPatterns.js";
+    walkDownPattern,
+    walkUpPattern,
+    walkLeftPattern,
+    walkRightPattern
+} from "../animation/gnomeAnimationPatterns.js"
 
-export class GirlHero extends Hero {
+export class GnomeHero extends Hero {
     constructor(position, inputHandler) {
         super(new CroppableSprite({
-            resource: resources.images.hero,
-            frameSize: new Vector2D(74, 75),
-            hFrames: 4,
+            resource: resources.images.gnome,
+            frameSize: new Vector2D(72, 72),
+            hFrames: 9,
             vFrames: 4
         }),
         {
-            stayUpPattern,
             stayDownPattern,
+            stayUpPattern,
             stayLeftPattern,
             stayRightPattern,
-            walkDownPattern, 
-            walkUpPattern, 
-            walkLeftPattern, 
-            walkRightPattern 
+            walkDownPattern,
+            walkUpPattern,
+            walkLeftPattern,
+            walkRightPattern
         },
         position, 
         75, 75, inputHandler);
