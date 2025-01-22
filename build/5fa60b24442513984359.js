@@ -1,1 +1,0 @@
-import{InputHandler}from"./InputHandler.js";import{makeThrowObjectCommand}from"./commands.js";export class ObjectInputHandler extends InputHandler{constructor(n){super(n)}handle(n){return null}}

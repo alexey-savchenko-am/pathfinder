@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin'); // Убедитесь, что этот плагин установлен
+const TerserPlugin = require('terser-webpack-plugin'); 
 
 module.exports = {
   entry: ['./main.js', './index.html'],
