@@ -1,0 +1,1 @@
+export const Colors={green:"green",blue:"blue",red:"red"};export function createTerrain(e,r,n,t=0){const o=e,u=r,c=n,s=t;return{getMovementCost:function(){return o},getIsPassable:function(){return u},draw:function(e,r,n,t,o){c.draw(e,r,n,t,o,s)}}}

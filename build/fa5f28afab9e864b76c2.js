@@ -1,0 +1,1 @@
+import{GameObject}from"../GameObject.js";export class Light extends GameObject{constructor(t,e,i,s){super(t,e,i),this._animation=s}update(t){}draw(t){this._animation.draw(t,this._centerX,this._centerY,this.width,this.height)}}

@@ -1,0 +1,1 @@
+import{events}from"./Events.js";import{GameObject}from"./src/GameObject.js";import{Vector2D}from"./src/Vector2D.js";export class Camera extends GameObject{constructor(){super(new Vector2D(0,0)),events.on("HERO_POSITION",this,(e=>{let t=5-e.getRow,o=8-e.getCol;t>0&&(t=0),o>0&&(o=0),t<-10&&(t=-10),o<-16&&(o=-16),this.setPosition(new Vector2D(t,o))}))}}
