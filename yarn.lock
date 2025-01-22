@@ -1566,6 +1566,14 @@
   "resolved" "https://registry.npmjs.org/mimic-fn/-/mimic-fn-2.1.0.tgz"
   "version" "2.1.0"
 
+"mini-css-extract-plugin@^2.9.2":
+  "integrity" "sha512-GJuACcS//jtq4kCtd5ii/M0SZf7OZRH+BxdqXZHaJfb8TJiVl+NgQRPwiYt2EuqeSkNydn/7vP+bcE27C5mb9w=="
+  "resolved" "https://registry.npmjs.org/mini-css-extract-plugin/-/mini-css-extract-plugin-2.9.2.tgz"
+  "version" "2.9.2"
+  dependencies:
+    "schema-utils" "^4.0.0"
+    "tapable" "^2.2.1"
+
 "minimalistic-assert@^1.0.0":
   "integrity" "sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A=="
   "resolved" "https://registry.npmjs.org/minimalistic-assert/-/minimalistic-assert-1.0.1.tgz"
@@ -2025,9 +2033,9 @@
     "ajv-keywords" "^3.5.2"
 
 "schema-utils@^4.0.0":
-  "integrity" "sha512-L0jRsrPpjdckP3oPug3/VxNKt2trR8TcabrM6FOAAlvC/9Phcmm+cuAgTlxBqdBR1WJx7Naj9WHw+aOmheSVbw=="
-  "resolved" "https://registry.npmjs.org/schema-utils/-/schema-utils-4.2.0.tgz"
-  "version" "4.2.0"
+  "integrity" "sha512-Gf9qqc58SpCA/xdziiHz35F4GNIWYWZrEshUc/G/r5BnLph6xpKuLeoJoQuj5WfBIx/eQLf+hmVPYHaxJu7V2g=="
+  "resolved" "https://registry.npmjs.org/schema-utils/-/schema-utils-4.3.0.tgz"
+  "version" "4.3.0"
   dependencies:
     "@types/json-schema" "^7.0.9"
     "ajv" "^8.9.0"
@@ -2272,7 +2280,7 @@
   "resolved" "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   "version" "1.0.0"
 
-"tapable@^2.0.0", "tapable@^2.1.1", "tapable@^2.2.0":
+"tapable@^2.0.0", "tapable@^2.1.1", "tapable@^2.2.0", "tapable@^2.2.1":
   "integrity" "sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ=="
   "resolved" "https://registry.npmjs.org/tapable/-/tapable-2.2.1.tgz"
   "version" "2.2.1"

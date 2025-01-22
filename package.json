@@ -13,5 +13,8 @@
   "scripts": {
     "build": "webpack --mode production",
     "debug": "webpack serve --mode development"
+  },
+  "dependencies": {
+    "mini-css-extract-plugin": "^2.9.2"
   }
 }
