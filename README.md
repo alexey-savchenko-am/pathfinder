@@ -4,7 +4,7 @@ https://alexey-savchenko-am.github.io/pathfinder/
 
 Encapsulation of a pathfinding A-star algorithm in a gaming application (https://en.wikipedia.org/wiki/A*_search_algorithm).
 
-To select a character, click on them with the left mouse button. To set a route, right-click on an empty tile.
+To select a character, click on them with the left mouse button. To set a route, right-click on an empty tile
 
 ```javascript
 export function astar(currentPosition, destinationPosition, tileMap, tilesInRowCount, tilesInColCount) {
